@@ -1,4 +1,4 @@
-class Pickup {
+export class Pickup {
   constructor(type, scaledTileSize, column, row, pacman, mazeDiv, points) {
     this.type = type;
     this.pacman = pacman;
@@ -90,7 +90,7 @@ class Pickup {
       image = type;
     }
 
-    return `url(app/style/graphics/spriteSheets/pickups/${image}.svg)`;
+    return `url(style/graphics/spriteSheets/pickups/${image}.svg)`;
   }
 
   /**
@@ -197,7 +197,3 @@ class Pickup {
     }
   }
 }
-
-// removeIf(production)
-module.exports = Pickup;
-// endRemoveIf(production)

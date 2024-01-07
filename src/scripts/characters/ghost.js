@@ -1,4 +1,4 @@
-class Ghost {
+export class Ghost {
   constructor(
     scaledTileSize, mazeArray, pacman, name, level, characterUtil, blinky,
   ) {
@@ -175,13 +175,13 @@ class Ghost {
     }
 
     if (mode === 'scared') {
-      this.animationTarget.style.backgroundImage = 'url(app/style/graphics/'
+      this.animationTarget.style.backgroundImage = 'url(style/graphics/'
         + `spriteSheets/characters/ghosts/scared_${this.scaredColor}.svg)`;
     } else if (mode === 'eyes') {
-      this.animationTarget.style.backgroundImage = 'url(app/style/graphics/'
+      this.animationTarget.style.backgroundImage = 'url(style/graphics/'
         + `spriteSheets/characters/ghosts/eyes_${direction}.svg)`;
     } else {
-      this.animationTarget.style.backgroundImage = 'url(app/style/graphics/'
+      this.animationTarget.style.backgroundImage = 'url(style/graphics/'
         + `spriteSheets/characters/ghosts/${name}/${name}_${direction}`
         + `${emotion}.svg)`;
     }
@@ -840,7 +840,3 @@ class Ghost {
     }
   }
 }
-
-// removeIf(production)
-module.exports = Ghost;
-// endRemoveIf(production)

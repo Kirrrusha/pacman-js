@@ -1,4 +1,12 @@
-class GameCoordinator {
+import { Pacman } from '../characters/pacman.js';
+import { Ghost } from '../characters/ghost.js';
+import { CharacterUtil } from '../utilities/characterUtil.js';
+import { SoundManager } from '../utilities/soundManager.js';
+import { Timer } from '../utilities/timer.js';
+import { Pickup } from '../pickups/pickup.js';
+import { GameEngine } from './gameEngine.js';
+
+export class GameCoordinator {
   constructor() {
     this.gameUi = document.getElementById('game-ui');
     this.rowTop = document.getElementById('row-top');
@@ -101,7 +109,7 @@ class GameCoordinator {
     const head = document.getElementsByTagName('head')[0];
     const link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = 'build/app.css';
+    link.href = './style/style.css';
 
     link.onload = this.preloadAssets.bind(this);
 
@@ -201,7 +209,7 @@ class GameCoordinator {
       const loadingPacman = document.getElementById('loading-pacman');
       const loadingDotMask = document.getElementById('loading-dot-mask');
 
-      const imgBase = 'app/style/graphics/spriteSheets/';
+      const imgBase = 'style/graphics/spriteSheets/';
       const imgSources = [
         // Pacman
         `${imgBase}characters/pacman/arrow_down.svg`,
@@ -290,10 +298,10 @@ class GameCoordinator {
         `${imgBase}maze/maze_blue.svg`,
 
         // Misc
-        'app/style/graphics/extra_life.png',
+        'style/graphics/extra_life.png',
       ];
 
-      const audioBase = 'app/style/audio/';
+      const audioBase = 'style/audio/';
       const audioSources = [
         `${audioBase}game_start.mp3`,
         `${audioBase}pause.mp3`,
@@ -637,7 +645,7 @@ class GameCoordinator {
 
     for (let i = 0; i < this.lives; i += 1) {
       const extraLifePic = document.createElement('img');
-      extraLifePic.setAttribute('src', 'app/style/graphics/extra_life.svg');
+      extraLifePic.setAttribute('src', 'style/graphics/extra_life.svg');
       extraLifePic.style.height = `${this.scaledTileSize * 2}px`;
       this.extraLivesDisplay.appendChild(extraLifePic);
     }
@@ -989,7 +997,7 @@ class GameCoordinator {
     this.removeTimer({ detail: { timer: this.endIdleTimer } });
     this.removeTimer({ detail: { timer: this.ghostFlashTimer } });
 
-    const imgBase = 'app/style//graphics/spriteSheets/maze/';
+    const imgBase = 'style//graphics/spriteSheets/maze/';
 
     new Timer(() => {
       this.ghosts.forEach((ghost) => {
@@ -1191,7 +1199,7 @@ class GameCoordinator {
 
     pointsDiv.style.position = 'absolute';
     pointsDiv.style.backgroundSize = `${width}px`;
-    pointsDiv.style.backgroundImage = 'url(app/style/graphics/'
+    pointsDiv.style.backgroundImage = 'url(style/graphics/'
         + `spriteSheets/text/${amount}.svg`;
     pointsDiv.style.width = `${width}px`;
     pointsDiv.style.height = `${height || width}px`;
@@ -1257,6 +1265,7 @@ class GameCoordinator {
   }
 }
 
-// removeIf(production)
-module.exports = GameCoordinator;
-// endRemoveIf(production)
+ window.onload = () => {
+          new GameCoordinator();
+        }
+
